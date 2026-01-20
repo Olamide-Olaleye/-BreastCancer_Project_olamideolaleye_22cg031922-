@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box; /* Ensures padding doesn't widen the element */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #5c67f2;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #4a54e1;
+        }
+        .result {
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Cancer Detector</h1>
+        
+        <form action="{{ url_for('predict')}}" method="post">
+            
+            <input type="number" step="any" name="mean_radius" placeholder="Mean Radius" required="required" />
+            
+            <input type="number" step="any" name="mean_texture" placeholder="Mean Texture" required="required" />
+            
+            <input type="number" step="any" name="mean_perimeter" placeholder="Mean Perimeter" required="required" />
+            
+            <input type="number" step="any" name="mean_area" placeholder="Mean Area" required="required" />
+            
+            <input type="number" step="any" name="mean_smoothness" placeholder="Mean Smoothness" required="required" />
+            
+            <input type="number" step="any" name="mean_compactness" placeholder="Mean Compactness" required="required" />
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+    </div>
+
+</body>
+</html>
